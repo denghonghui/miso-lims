@@ -192,7 +192,7 @@ public class EditRunController {
   @GetMapping("/{runId}")
   public ModelAndView setupForm(@PathVariable Long runId, ModelMap model) throws IOException {
     Run run = runService.get(runId);
-    if (run == null) throw new NotFoundException("No run found with ID " + runId);
+    if (run == null) throw new NotFoundException(String.format("No run found with ID %d", runId));
     return setupForm(run, model);
 
   }
@@ -200,7 +200,7 @@ public class EditRunController {
   @GetMapping("/alias/{runAlias}")
   public ModelAndView setupForm(@PathVariable String runAlias, ModelMap model) throws IOException {
     Run run = runService.getRunByAlias(runAlias);
-    if (run == null) throw new NotFoundException("No run found with alias " + runAlias);
+    if (run == null) throw new NotFoundException(String.format("No run found with alias '%s'", runAlias));
     return setupForm(run, model);
   }
 
